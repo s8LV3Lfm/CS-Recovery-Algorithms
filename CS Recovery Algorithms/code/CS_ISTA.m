@@ -35,7 +35,7 @@
 
 %%
 function [xhk,err]=CS_ISTA(y,A,lambda,iter)
-if nargin<4;
+if nargin<4
     iter=1e6;  %足够大，直到能达到精度1e-6
 end
 y=y(:);
@@ -47,7 +47,7 @@ M=min(size(A));
 %
 Mat=A*A';
 x=randn(M,1);
-for i=1:5;  %一般3-5次就可以了
+for i=1:5  %一般3-5次就可以了
     x=x/norm(x,2); %归一化
     x=Mat*x;
 end
@@ -61,11 +61,11 @@ xhk=zeros(N,1);  %初始化存储向量，开始迭代的值从0开始 相当于x_k；
 % xhk=A'*y;       %可以估计一个最小二乘值，从该值开始迭代
 alp=lambda*tk;  %计算alp=lambda*t_k
 err(1)=0;
-for i=1:iter;
+for i=1:iter
      ck=xhk-2*tk*A'*(A*xhk-y);  %计算c_k
      xhk=(max(abs(ck)-alp,0)).*sign(ck);  %更新x_k,进入下次迭代
      err(i+1)=norm(A*xhk-y,2);
-     if abs(err(i+1)-err(i))<1e-6;  %跳出循环
+     if abs(err(i+1)-err(i))<1e-6  %跳出循环
          err=err(2:end);
          break;
      end

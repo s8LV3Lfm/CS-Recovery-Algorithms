@@ -33,7 +33,7 @@ IV=inv(mu*(A'*A)+lambda*eye(N));
 err=norm(f,2);
 tol=1e-3*err;
 K=0;
-while ((err>tol) && (K<Niter)),
+while ((err>tol) && (K<Niter))
     K=K+1;
     up=u;
     u=IV*(Ft+lambda*(d-b));

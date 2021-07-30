@@ -152,7 +152,7 @@ legend('IHTª÷∏¥–≈∫≈','‘≠ º–≈∫≈')
 %% CS_SBI    
 A=Phi;    %ª÷∏¥æÿ’Û 
 
-theta=CS_SBIL1(y,A,2000,100,1e4)
+theta=CS_SBIL1(y,A,2000,100,1e4);
 figure
 plot(t,theta,'ko',t,x,'r.')
 xlim([0,t(end)])

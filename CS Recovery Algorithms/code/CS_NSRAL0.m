@@ -18,7 +18,7 @@
 % null space of the measurement matrix,” IEEE Inter. Midwest Symp. on Circuits-Syst, pp. 430–433, 2010.
 %---------------------------------------------------------------------------------------------------------------------%
 %%
-function [yk,valL0]=CS_NSRAL0(y,A,deltaT,r,t,eps);
+function [yk,valL0]=CS_NSRAL0(y,A,deltaT,r,t,eps)
 % r为delta缩小步长，<1。
 y=y(:);
 N=max(size(A));
@@ -44,7 +44,7 @@ while (delta>deltaT)
  w=1./(abs(yk)+eps);  %权重更新
  delta=r*delta;
  [valL0(k+1)]= ones(1,N)*(1-exp(-(yk).^2./(2*deltaT.*deltaT)'));
- if (abs(valL0(k+1)-valL0(k))<1e-4);
+ if (abs(valL0(k+1)-valL0(k))<1e-4)
      valL0=valL0(2:end);
      break;
  end

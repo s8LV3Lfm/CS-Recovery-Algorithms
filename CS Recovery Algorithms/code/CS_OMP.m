@@ -20,8 +20,8 @@ M=min(size(A));
 theta=zeros(1,N);   %  待重构的向量    
 Base_t=[];              %  记录基向量的矩阵
 r_n=y;                  %  残差值
-for times=1:K;                                    %  迭代次数(有噪声的情况下,该迭代次数为K)
-    for col=1:N;                                  %  恢复矩阵的所有列向量
+for times=1:K                                     %  迭代次数(有噪声的情况下,该迭代次数为K)
+    for col=1:N                                   %  恢复矩阵的所有列向量
         product(col)=abs(A(:,col)'*r_n);          %  恢复矩阵的列向量和残差的投影系数(内积值) 
     end
     [val,pos]=max(product);                       %  最大投影系数对应的位置，val值，pos位置

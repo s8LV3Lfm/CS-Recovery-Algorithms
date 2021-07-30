@@ -40,7 +40,7 @@
 
 %%
 function [xhk,err]=CS_FISTA(y,A,lambda,iter)
-if nargin<4;
+if nargin<4
     iter=1e6;  %足够大，直到能达到精度1e-6
 end
 y=y(:);
@@ -54,7 +54,7 @@ M=min(size(A));
 %
 Mat=A*A';
 x=randn(M,1);
-for i=1:5;  %一般3-5次就可以了
+for i=1:5  %一般3-5次就可以了
     x=x/norm(x,2); %归一化
     x=Mat*x;
 end
@@ -69,7 +69,7 @@ yk=xhk;    %初始化辅助变量y
 % xhk=A'*y;       %可以估计一个最小二乘值，从该值开始迭代
 alp=lambda*Li;  %计算alp=lambda*Li
 err(1)=0;
-for i=1:iter;
+for i=1:iter
      ck=yk-2*Li*A'*(A*yk-y);  %计算c_k
      xhk1=(max(abs(ck)-alp,0)).*sign(ck);  %更新x_k,进入下次迭代
      tk1=0.5+0.5*sqrt(1+4*tk^2);

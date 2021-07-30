@@ -18,7 +18,7 @@
 % IEEE Trans. Signal Process., vol. 57, no. 1, pp. 289-301, Jan. 2009.
 %---------------------------------------------------------------------------------------------------------------------%
 %%
-function [xs,valL0]=CS_SL0(y,A,deltaT,r,mu,L);
+function [xs,valL0]=CS_SL0(y,A,deltaT,r,mu,L)
 % r为delta缩小步长，<1。
 y=y(:);
 N=max(size(A));
@@ -53,7 +53,7 @@ for i=1:L   %L次最速上升算法
 end
    valL0(k+1)=N-sum(exp(-abs(xs).^2/(2*deltaT^2)));  %要用此公式得到好的值deltaT不能太小
    delta = delta * r;  %收缩步长,逐渐缩小delta，越小越好，只要不小于deltaT
-  if (abs(valL0(k+1)-valL0(k))<1e-4);
+  if (abs(valL0(k+1)-valL0(k))<1e-4)
      valL0=valL0(2:end);
      break;
  end

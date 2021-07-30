@@ -18,7 +18,7 @@
 % IEEE Trans. Signal Process., vol. 57, no. 1, pp. 289-301, Jan. 2009.
 %---------------------------------------------------------------------------------------------------------------------%
 %%
-function [xs,valL0]=CS_RSL0(y,A,deltaT,r,mu,L,e_eps);
+function [xs,valL0]=CS_RSL0(y,A,deltaT,r,mu,L,e_eps)
 % r为delta缩小步长，<1。
 y=y(:);
 N=max(size(A));
@@ -51,7 +51,7 @@ for i=1:L   %L次最速上升算法
     xs=xs-mu*t_delta;  %固定步长的梯度上升，获取上升后的函数值
     newy=A*xs-y;
     norm(newy,2)
-    if norm(newy,2)>e_eps;   %投影
+    if norm(newy,2)>e_eps   %投影
         xs=xs-pinv_A*newy; %投影到可行集上
         break;
     end
@@ -59,7 +59,7 @@ for i=1:L   %L次最速上升算法
 end
    valL0(k+1)=N-sum(exp(-abs(xs).^2/(2*deltaT^2)));  %要用此公式得到好的值deltaT不能太小
    delta = delta * r;  %收缩步长,逐渐缩小delta，越小越好，只要不小于deltaT
-  if (abs(valL0(k+1)-valL0(k))<1e-4);
+  if (abs(valL0(k+1)-valL0(k))<1e-4)
      valL0=valL0(2:end);
      break;
  end

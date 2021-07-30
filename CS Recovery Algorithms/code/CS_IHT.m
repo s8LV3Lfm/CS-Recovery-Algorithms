@@ -22,7 +22,7 @@ function x0=CS_IHT(y,A,K)
 
 M=min(size(A));
 N=max(size(A));
-if nargin<3;
+if nargin<3
     K=floor(M/4);        %最少迭代次数，一般等于稀疏度数，经验公式除以4，为保证重构精度，iter可以选大一点
 end
 x0=zeros(N,1);         % 初始化解空间向量
